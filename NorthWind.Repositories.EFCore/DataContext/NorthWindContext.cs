@@ -59,17 +59,24 @@ namespace NorthWind.Repositories.EFCore.DataContext
               .WithMany()
               .HasForeignKey(o => o.CustomerId);
             modelBuilder.Entity<OrderDetail>()
-             .HasOne<Customer>()
+             .HasOne<Product>()
              .WithMany()
              .HasForeignKey(od => od.ProductID);
 
             modelBuilder.Entity<Product>()
                 .HasData(
-                new Customer { Id = "ALFKI", Name = "Alfreds F." },
-                new Customer { Id = "ANATR", Name = "Ana Trujillo" },
-                new Customer { Id = "ANTON", Name = "Antonio Moreno" }
+                new Product { ID = 1, Name = "Chai" },
+                new Product { ID = 2, Name = "Chang" },
+                new Product { ID = 3, Name = "Anissed Syrup" }
 
                 );
+            modelBuilder.Entity<Customer>()
+               .HasData(
+               new Customer { Id = "ALFKI", Name = "ALFRED.F" },
+               new Customer { Id = "ANATR", Name = "ANA TRUJILLO" },
+               new Customer { Id = "ANTON", Name = "ANTONIO MORENO" }
+
+               );
 
         }
     }
