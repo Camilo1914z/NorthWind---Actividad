@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application Business Rules"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interfaces adapters", "Interfaces adapters", "{D745D68E-D3B3-497D-8D6F-266F10E4DA57}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frameworks And Drivers", "Frameworks And Drivers", "{4BB57C0A-CBBD-4684-95EB-D8DFE0CA5247}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frameworks And Driver", "Frameworks And Driver", "{4BB57C0A-CBBD-4684-95EB-D8DFE0CA5247}"
 EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
