@@ -10,9 +10,10 @@ namespace NorthWind.Entities.POCOEntities
     {
     public int Id { get; set; }
     public string CustomerId { get; set;}
-    public DateTime CustomerDate { get; set;}
-    public string shipCity { get; set;}
-    public string shipCountry { get; set;}
-    public string shipPostalCode { get; set;}
+    public DateTime OrderDate { get; set;}
+    public string ShipAddress { get; set;}
+    public string ShipCity { get; set;}
+    public string ShipCountry { get; set;}
+    public string ShipPostalCode { get; set;}
     }
 }
