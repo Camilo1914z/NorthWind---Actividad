@@ -22,35 +22,38 @@ namespace NorthWind.Repositories.EFCore.DataContext
 
 
             modelBuilder.Entity<Customer>()
-                    .Property(c => c.Id)
-                    .HasMaxLength(5)
-                    .IsFixedLength();
+     .Property(c => c.Id)
+     .HasMaxLength(5)
+     .IsFixedLength();
             modelBuilder.Entity<Customer>()
                 .Property(c => c.Name)
                 .IsRequired()
-                    .HasMaxLength(48);
+                .HasMaxLength(40);
+
             modelBuilder.Entity<Product>()
-               .Property(p => p.Name)
-               .IsRequired()
-               .HasMaxLength(48);
+            .Property(p => p.Name)
+            .IsRequired()
+            .HasMaxLength(40);
+
             modelBuilder.Entity<Order>()
-                .Property(O => O.CustomerId)
-                .HasMaxLength(48);
+            .Property(o => o.CustomerId)
+            .IsRequired()
+            .HasMaxLength(5)
+            .IsFixedLength();
             modelBuilder.Entity<Order>()
-               .Property(o => o.ShipAddress)
-               .HasMaxLength(48);
+                .Property(o => o.ShipAddress)
+                .IsRequired()
+                .HasMaxLength(60);
             modelBuilder.Entity<Order>()
-               .Property(o => o.ShipCity)
-               .HasMaxLength(15);
+                .Property(o => o.ShipCity)
+                .HasMaxLength(15);
             modelBuilder.Entity<Order>()
-               .Property(o => o.ShipCountry)
-               .HasMaxLength(15);
+                .Property(o => o.ShipCountry)
+                .HasMaxLength(15);
             modelBuilder.Entity<Order>()
-               .Property(o => o.ShipPostalCode)
-               .HasMaxLength(15);
-            modelBuilder.Entity<Order>()
-               .Property(o => o.ShipAddress)
-               .HasMaxLength(48);
+                .Property(o => o.ShipPostalCode)
+                .HasMaxLength(10);
+
 
             modelBuilder.Entity<OrderDetail>()
               .HasKey(od => new { od.OrderId, od.ProductID, });
@@ -58,6 +61,7 @@ namespace NorthWind.Repositories.EFCore.DataContext
               .HasOne<Customer>()
               .WithMany()
               .HasForeignKey(o => o.CustomerId);
+
             modelBuilder.Entity<OrderDetail>()
              .HasOne<Product>()
              .WithMany()

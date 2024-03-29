@@ -18,7 +18,7 @@ namespace NorthWind.Repositories.EFCore.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nchar(5)", fixedLength: true, maxLength: 5, nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(48)", maxLength: 48, nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -31,7 +31,7 @@ namespace NorthWind.Repositories.EFCore.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(48)", maxLength: 48, nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -44,12 +44,12 @@ namespace NorthWind.Repositories.EFCore.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CustomerId = table.Column<string>(type: "nchar(48)", maxLength: 48, nullable: false),
+                    CustomerId = table.Column<string>(type: "nchar(5)", fixedLength: true, maxLength: 5, nullable: false),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ShipAddress = table.Column<string>(type: "nvarchar(48)", maxLength: 48, nullable: false),
+                    ShipAddress = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
                     ShipCity = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     ShipCountry = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
-                    ShipPostalCode = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false)
+                    ShipPostalCode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false)
                 },
                 constraints: table =>
                 {
