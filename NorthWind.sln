@@ -11,9 +11,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interfaces adapters", "Inte
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frameworks And Driver", "Frameworks And Driver", "{4BB57C0A-CBBD-4684-95EB-D8DFE0CA5247}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NorthWind.Entities", "NorthWind.Entities\NorthWind.Entities.csproj", "{4FB16DF5-344E-4FBD-90C5-31C209A9C243}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4FB16DF5-344E-4FBD-90C5-31C209A9C243}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FB16DF5-344E-4FBD-90C5-31C209A9C243}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FB16DF5-344E-4FBD-90C5-31C209A9C243}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FB16DF5-344E-4FBD-90C5-31C209A9C243}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4FB16DF5-344E-4FBD-90C5-31C209A9C243} = {EE3FD375-6773-4E7C-8D1A-3621B2AAB5D8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1CB51C34-08AA-4745-861A-D0889B5A3237}
