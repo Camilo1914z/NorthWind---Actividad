@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NorthWind.loC", "NorthWind.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presenters", "Presenters", "{DFCD96BD-DADF-495D-BBDF-381450A19853}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NorhtWind.WebExceptionsPresenter", "NorhtWind.WebExceptionsPresenter\NorhtWind.WebExceptionsPresenter.csproj", "{8AD2AC23-2264-47F7-A687-34A4C9214E7A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NorthWind.WebExceptionsPresenter", "NorhtWind.WebExceptionsPresenter\NorthWind.WebExceptionsPresenter.csproj", "{8AD2AC23-2264-47F7-A687-34A4C9214E7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

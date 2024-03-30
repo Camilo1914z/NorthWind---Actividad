@@ -13,6 +13,6 @@ namespace NorthWind.Entities.Exceptions
         public GeneralException(string message) :base(message){ }
         public GeneralException(string message, Exception innerException) : base(message, innerException) { }
 
-        public GeneralException(string litle, string detail) : base(litle) => Detail = detail;
+        public GeneralException(string title, string detail) : base(title) => Detail = detail;
     }
 }

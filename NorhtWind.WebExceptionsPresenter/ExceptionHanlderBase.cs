@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NorhtWind.WebExceptionsPresenter
+namespace NorthWind.WebExceptionsPresenter
 {
     public class ExceptionHanlderBase
     {

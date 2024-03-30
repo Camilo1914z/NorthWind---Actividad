@@ -1,13 +1,14 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NorhtWind.WebExceptionsPresenter
+namespace NorthWind.WebExceptionsPresenter
 {
     public interface IExceptionHandler
     {
-        Task Handle(Exception context);
+        Task Handle(ExceptionContext context);
     }
 }
