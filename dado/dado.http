@@ -1,0 +1,6 @@
+@dado_HostAddress = http://localhost:5125
+
+GET {{dado_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
