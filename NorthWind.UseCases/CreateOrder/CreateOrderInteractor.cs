@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace NorthWind.UseCases.CreateOrder
 {
-    public class CreateOrderInteractor : IRequestHandler<CreateOrderInputPort, int>
+    public class CreateOrderInteractor : AsyncRequestHandler<CreateOrderInputPort>
     {
         readonly IOrderRepository OrderRepository;
         readonly IOrderDetailRepository OrderDetailRepository;
@@ -20,23 +20,23 @@ namespace NorthWind.UseCases.CreateOrder
             IUnitOFWork unitOfWork) =>
             (OrderRepository, OrderDetailRepository, UnitOfWork) =
             (orderRepository, orderDetailRepository, unitOfWork);
-        public async Task<int> Handle(CreateOrderInputPort request,
+        protected async override Task Handle(CreateOrderInputPort request,
             CancellationToken cancellationToken)
         {
             Order Order = new Order
             {
-                CustomerId = request.CustomerId,
+                CustomerId = request.RequestData.CustomerId,
                 OrderDate = DateTime.Now,
-                ShipAddress = request.ShipAddress,
-                ShipCity = request.ShipCity,
-                ShipCountry = request.ShipCountry,
-                ShipPostalCode = request.ShipPotalCode,
+                ShipAddress = request.RequestData.ShipAddress,
+                ShipCity = request.RequestData.ShipCity,
+                ShipCountry = request.RequestData.ShipCountry,
+                ShipPostalCode = request.RequestData.ShipPotalCode,
                 ShippingType = Entities.Enums.ShippingTypes.Road,
                 DiscounType = Entities.Enums.DiscountTypes.Percentage,
                 Discount = 10
             };
             OrderRepository.create(Order);
-            foreach (var item in request.OrderDetails)
+            foreach (var item in request.RequestData.OrderDetails)
             {
                 OrderDetailRepository.Create(
                 new OrderDetail {
@@ -62,7 +62,7 @@ namespace NorthWind.UseCases.CreateOrder
                 throw new GeneralException("Error al crear la Orden.",
                     ex.Message);
             }
-            return Order.Id;
+            request.OutputPort.Handle(Order.Id);
         }
 
         }
