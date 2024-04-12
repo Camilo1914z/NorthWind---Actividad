@@ -9,15 +9,10 @@ namespace NorthWind.WebApi.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
-        readonly IMediator Mediator;
-        public OrderController(IMediator mediator) => Mediator = mediator;
-        [HttpPost("Create-order")]
-
-        public async Task<ActionResult<int>> CreateOrder(CreateOrderInputPort orderparams) {
-            return await Mediator.Send(orderparams);
+       
         
         
-        }
+        
         }
 
 }
