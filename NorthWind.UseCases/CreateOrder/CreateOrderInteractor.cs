@@ -2,6 +2,8 @@
 using NorthWind.Entities.Exceptions;
 using NorthWind.Entities.Interfaces;
 using NorthWind.Entities.POCOEntities;
+using NorthWind.UseCasesDTOs.CreateOrder;
+using NorthWind.UseCasesPorts.CreateOrder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,42 +12,45 @@ using System.Threading.Tasks;
 
 namespace NorthWind.UseCases.CreateOrder
 {
-    public class CreateOrderInteractor : AsyncRequestHandler<CreateOrderInputPort>
+    public class CreateOrderInteractor : ICreateOrderInputPort
     {
         readonly IOrderRepository OrderRepository;
         readonly IOrderDetailRepository OrderDetailRepository;
         readonly IUnitOFWork UnitOfWork;
+        readonly ICreateOrderOutputPort OutputPort;
         public CreateOrderInteractor(IOrderRepository orderRepository,
             IOrderDetailRepository orderDetailRepository,
-            IUnitOFWork unitOfWork) =>
-            (OrderRepository, OrderDetailRepository, UnitOfWork) =
-            (orderRepository, orderDetailRepository, unitOfWork);
-        protected async override Task Handle(CreateOrderInputPort request,
-            CancellationToken cancellationToken)
+            IUnitOFWork unitOfWork, ICreateOrderOutputPort outputPort) =>
+            (OrderRepository, OrderDetailRepository, UnitOfWork, OutputPort) =
+            (orderRepository, orderDetailRepository, unitOfWork, outputPort);
+
+        public async Task Handle(CreateOrderParams order)
         {
+
             Order Order = new Order
             {
-                CustomerId = request.RequestData.CustomerId,
+                CustomerId = order.CustomerId,
                 OrderDate = DateTime.Now,
-                ShipAddress = request.RequestData.ShipAddress,
-                ShipCity = request.RequestData.ShipCity,
-                ShipCountry = request.RequestData.ShipCountry,
-                ShipPostalCode = request.RequestData.ShipPotalCode,
+                ShipAddress = order.ShipAddress,
+                ShipCity = order.ShipCity,
+                ShipCountry = order.ShipCountry,
+                ShipPostalCode = order.ShipPotalCode,
                 ShippingType = Entities.Enums.ShippingTypes.Road,
                 DiscounType = Entities.Enums.DiscountTypes.Percentage,
                 Discount = 10
             };
             OrderRepository.create(Order);
-            foreach (var item in request.RequestData.OrderDetails)
+            foreach (var item in order.OrderDetails)
             {
                 OrderDetailRepository.Create(
-                new OrderDetail {
+                new OrderDetail
+                {
                     Order = Order,
-                    ProductID=item.ProductId,
+                    ProductID = item.ProductId,
                     UnitPrice = item.UnitPrice,
                     Quantity = item.Quantity,
-                    
-                
+
+
                 });
 
 
@@ -53,18 +58,20 @@ namespace NorthWind.UseCases.CreateOrder
 
             }
             try
-            
-                {
-                    await UnitOfWork.SaveChangesAsync();
-                }
+
+            {
+                await UnitOfWork.SaveChangesAsync();
+            }
             catch (Exception ex)
             {
                 throw new GeneralException("Error al crear la Orden.",
                     ex.Message);
             }
-            request.OutputPort.Handle(Order.Id);
+            await OutputPort.Handle(Order.Id);
         }
 
-        }
-       
     }
+}
+
+       
+    
