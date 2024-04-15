@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NorthWind.Entities.Interfaces;
+using NorthWind.Presenters;
 using NorthWind.Repositories.EFCore.DataContext;
 using NorthWind.Repositories.EFCore.Repositories;
 
@@ -34,7 +35,8 @@ namespace NorthWind.loC
            
             services.AddValidatorsFromAssembly(typeof(CreateOrderValidator).Assembly);
             services.AddScoped<ICreateOrderInputPort, CreateOrderInteractor>();
-         
+            services.AddScoped<ICreateOrderOutputPort, CreateOrderPresenter>();
+
             return services;
         }
 

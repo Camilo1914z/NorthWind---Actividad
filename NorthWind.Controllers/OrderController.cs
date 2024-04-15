@@ -14,15 +14,16 @@ namespace NorthWind.Controllers
 
 
         readonly ICreateOrderInputPort InputPort;
-        //readonly ICreateOrderOutputPort OutputPort;
-        readonly IPresenter<string> Presenter;
-        public OrderController(ICreateOrderInputPort inputPort, IPresenter<string> presenter) =>
-            (InputPort, Presenter) =(inputPort,presenter);
+        readonly ICreateOrderOutputPort OutputPort;
+        
+        public OrderController(ICreateOrderInputPort inputPort, ICreateOrderOutputPort outputPort) =>
+            (InputPort, OutputPort) = (inputPort,outputPort);
         [HttpPost("Create-order")]
 
         public async Task<string> CreateOrder(CreateOrderParams orderparams)
         {
             await InputPort.Handle(orderparams);
+            var Presenter = OutputPort as CreateOrderPresenter;
             return Presenter.Content;
         }
 
